@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#18071f" />
+  <meta name="description" content="Assolange Ballers — Basquete, disciplina e comunidade." />
+  <title>Assolange Ballers</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <!-- Todos os ícones são SVG locais, sem bibliotecas ou dependências. -->
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="ico-ball" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22" fill="#ffc43d" stroke="#211125" stroke-width="1" />
+      <path d="M24 2v44M2 24h44M9.5 8.5c15.5 9.2 15.5 21.8 0 31M38.5 8.5c-15.5 9.2-15.5 21.8 0 31" fill="none" stroke="#1c0a29" stroke-width="2.8" />
+    </symbol>
+    <symbol id="ico-shoe" viewBox="0 0 56 48">
+      <path d="M9 37c8-4 15-11 18-21l4-11 7 1-2 11 7 5 6 2 3 9c1 4-4 7-9 7H7c-5 0-7-2-5-5l7-4Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" />
+      <path d="m17 30 6 3m-2-8 6 3m-1-9 6 3M5 40c12 1 28 1 46-3M31 6l-3 10 9 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </symbol>
+    <symbol id="ico-hoop" viewBox="0 0 48 50">
+      <path d="M3 5h42v8H3zM8 13l5 31m27-31-5 31M13 44h22M8 16l32 27M40 16 8 43M18 13l7 31M30 13l-7 31" stroke="currentColor" fill="none" stroke-width="2" stroke-linejoin="round" />
+      <path d="M3 5h42v8H3z" fill="none" stroke="currentColor" stroke-width="2.5" />
+    </symbol>
+    <symbol id="ico-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+    <symbol id="ico-edit" viewBox="0 0 24 24"><path d="m4 17-1 4 4-1L19 8l-3-3L4 17Zm11-11 3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="ico-home" viewBox="0 0 24 24"><path d="m2 11 10-8 10 8v10h-7v-7H9v7H2Z" fill="currentColor" stroke="currentColor" stroke-linejoin="round" stroke-width="1" /></symbol>
+    <symbol id="ico-team" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6.5 20v-2c0-3 2.5-5 5.5-5s5.5 2 5.5 5v2M4.5 10a2.5 2.5 0 1 1 2-4M1 20v-2a5 5 0 0 1 4-4.8M19.5 10a2.5 2.5 0 1 0-2-4M23 20v-2a5 5 0 0 0-4-4.8" stroke="currentColor" fill="none" stroke-width="1.9" stroke-linecap="round" /></symbol>
+    <symbol id="ico-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M7 3v5M17 3v5M3 10h18" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M8 14h2v2H8zm6 0h2v2h-2z" fill="currentColor"/></symbol>
+    <symbol id="ico-chart" viewBox="0 0 24 24"><rect x="3" y="13" width="4" height="8" rx=".5" fill="currentColor"/><rect x="10" y="5" width="4" height="16" rx=".5" fill="currentColor"/><rect x="17" y="9" width="4" height="12" rx=".5" fill="currentColor"/></symbol>
+    <symbol id="ico-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ico-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ico-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <div class="phone-frame">
+    <div class="phone-screen">
+      <div class="status-bar" aria-label="Barra de status simulada">
+        <span class="status-time">9:41</span>
+        <span class="dynamic-island" aria-hidden="true"><span class="camera"></span></span>
+        <div class="status-indicators" aria-hidden="true">
+          <svg viewBox="0 0 19 14"><rect x="1" y="9" width="3" height="4" rx=".7"/><rect x="6" y="6" width="3" height="7" rx=".7"/><rect x="11" y="3" width="3" height="10" rx=".7"/><rect x="16" y="1" width="3" height="12" rx=".7"/></svg>
+          <svg viewBox="0 0 20 16"><path d="M1 5a14 14 0 0 1 18 0M4 9a10 10 0 0 1 12 0M7.5 12.5a5 5 0 0 1 5 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="10" cy="15" r="1" /></svg>
+          <span class="battery"></span>
+        </div>
+      </div>
+
+      <main class="main-scroll" id="main-scroll">
+        <div id="home-page" class="home-page">
+          <header class="visual-header">
+            <img src="assets/cabecalho.png" alt="Assolange Ballers — Basquete, disciplina e comunidade" />
+            <button class="header-action header-menu" type="button" data-action="menu" aria-label="Abrir menu"></button>
+            <button class="header-action header-notification" type="button" data-action="notifications" aria-label="Ver notificações"></button>
+          </header>
+          <section class="court-card" aria-label="Centro de treinamento CT Abdias Ferreira">
+            <img src="assets/quadra-ct-abdias-ferreira.png" alt="Quadra roxa e dourada do CT Abdias Ferreira" />
+            <button type="button" class="court-start-action" data-action="open-match" aria-label="Abrir partida no CT Abdias Ferreira"></button>
+            <button type="button" class="court-map-action" data-action="location" aria-label="Ver CT Abdias Ferreira no Google Maps"></button>
+            <span class="court-hint" aria-hidden="true">Toque na quadra para jogar <svg><use href="#ico-chevron"></use></svg></span>
+          </section>
+          <div id="home-rankings" class="ranking-sections"></div>
+        </div>
+        <section id="inner-page" class="inner-page" hidden aria-live="polite"></section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navegação principal">
+        <button class="nav-item active" type="button" data-tab="inicio" aria-current="page"><svg><use href="#ico-home"/></svg><span>Início</span></button>
+        <button class="nav-item" type="button" data-tab="elenco"><svg><use href="#ico-team"/></svg><span>Elenco</span></button>
+        <button class="nav-item" type="button" data-tab="jogos"><svg><use href="#ico-calendar"/></svg><span>Jogos</span></button>
+        <button class="nav-item" type="button" data-tab="estatisticas"><svg><use href="#ico-chart"/></svg><span>Estatísticas</span></button>
+      </nav>
+      <div class="home-indicator" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <div class="overlay" id="overlay" hidden>
+    <div class="overlay-backdrop" data-action="close-overlay"></div>
+    <aside class="overlay-panel" id="overlay-panel" role="dialog" aria-modal="true" aria-label="Painel"></aside>
+  </div>
+</body>
+</html>

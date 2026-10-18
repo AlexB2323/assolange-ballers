@@ -1,0 +1,115 @@
+ASSOLANGE BALLERS V5 — MESÁRIO ENTRA SOMENTE COM SENHA
+====================================================
+Esta é a versão para Firebase + GitHub Pages.
+NÃO publique o app com regras abertas de gravação.
+
+COMO FUNCIONA
+------------
+- Visitante: abre o link e vê o elenco, placar, rankings e histórico.
+- Mesário: ao tocar na quadra, digita APENAS A SENHA. Pode escalar times,
+  registrar pontos/assistências/rebotes, salvar partidas e ver os jogos.
+- Administrador: no Elenco -> Acessar como administrador, digita o próprio
+  e-mail e senha. Pode criar/editar atletas e fotos, apagar partidas e
+  fazer tudo que o mesário faz.
+- Por segurança, o Firebase Authentication valida silenciosamente a senha
+  do mesário usando uma única conta coletiva. Ninguém digita o e-mail.
+  As regras do Firestore impedem esse usuário de editar o elenco.
+
+PASSO 1 — FIREBASE WEB
+---------------------
+1. Abra https://console.firebase.google.com/ e crie um projeto.
+2. Na página inicial do projeto, clique </> (Adicionar app Web).
+3. Registre o app e copie o objeto firebaseConfig mostrado pelo console.
+4. No VS Code, abra firebase.js e substitua:
+       apiKey, authDomain, projectId, appId
+   pelos valores EXATOS do seu projeto (sem adicionar senha).
+
+PASSO 2 — FIRESTORE
+------------------
+1. Firebase Console -> Firestore Database -> Criar banco de dados.
+2. Escolha Standard (default), uma região e MODO DE PRODUÇÃO.
+3. Abra a aba Rules (Regras).
+4. Substitua TUDO pelo conteúdo do arquivo firestore.rules desta pasta.
+5. Clique em Publicar (Publish).
+6. Não use `allow write: if true`; isso torna seus placares modificáveis
+   por qualquer pessoa, mesmo que você tenha tela com senha no site.
+
+PASSO 3 — DUAS CONTAS NO AUTHENTICATION (UMA VEZ SÓ)
+-------------------------------------------------
+1. Authentication -> Sign-in method -> habilite Email/Password.
+2. Authentication -> Users -> Add user:
+   CONTA 1 (ADMIN): SEU e-mail pessoal + sua senha forte.
+   CONTA 2 (MESÁRIO): e-mail separado que você controle, ex.
+                    mesario.seugrupo@gmail.com + uma OUTRA senha.
+   IMPORTANTE: Não use a mesma senha para ambos.
+3. Copie o UID da conta ADMIN e o UID da conta MESÁRIO separadamente.
+   UID não é e-mail. Cada conta precisa de seu próprio UID.
+4. Em Firestore Database -> Data -> Start collection -> `roles`:
+   Crie um documento com ID exatamente igual ao UID DO ADMIN:
+       admin  (Boolean) true
+       scorer (Boolean) true
+   Crie outro documento com ID exatamente igual ao UID DO MESÁRIO:
+       admin  (Boolean) false
+       scorer (Boolean) true
+   Salve os dois documentos.
+5. Em firebase.js, procure:
+       export const MESARIO_EMAIL = 'COLE_EMAIL_MESARIO';
+   Substitua SÓ o texto entre aspas pelo e-mail exato da CONTA MESÁRIO
+   criado no Authentication. O e-mail no código pode ser público.
+   NUNCA coloque A SENHA no arquivo ou no GitHub.
+
+PASSO 4 — TESTAR PELO VS CODE
+----------------------------
+1. Abra a pasta assolange-ballers-v5 no VS Code e use Live Preview.
+2. Se der erro de domínio autorizado ao fazer login:
+   Authentication -> Settings -> Authorized domains -> adicione
+   localhost (se necessário para Live Preview).
+3. Toque na imagem da quadra. Surge Acesso do Mesário, com só UM CAMPO:
+   senha. Digite a senha da CONTA MESÁRIO do passo 3.
+4. Escale Time A e Time B, lance +1/+2/+3 pontos, assistências e rebotes.
+5. Finalize o jogo. Deve aparecer na aba Jogos e no Firestore (matches).
+6. Vá no Elenco -> Acessar como administrador, faça login com a conta
+   ADMIN e teste cadastro e foto. Se ainda estiver logado como mesário,
+   clique Minha conta -> Sair antes de entrar como administrador.
+7. Confira que mesário não vê os botões de editar jogadores.
+
+PASSO 5 — GITHUB PAGES
+---------------------
+1. Acesse https://github.com/new e crie um repositório público
+   chamado `assolange-ballers`.
+2. No repositório, clique Add file -> Upload files e envie TODOS os
+   arquivos de dentro desta pasta (index.html na RAIZ, não numa subpasta).
+3. Commit changes.
+4. Settings -> Pages -> Source: Deploy from a branch;
+   Branch main; Folder /(root); Save.
+5. O endereço costuma ser:
+   https://SEU-USUARIO.github.io/assolange-ballers/
+6. Firebase Console -> Authentication -> Settings -> Authorized domains:
+   autorize SEU-USUARIO.github.io (sem https e sem caminho).
+7. Abra o mesmo link em dois celulares. Em um, faça login como mesário e
+   atualize o placar. No outro, acompanhe os dados e histórico.
+
+SEGURANÇA E LIMITES
+-------------------
+- O mesário só DIGITA senha. Por trás, Firebase Authentication verifica
+  a conta. Sem essa validação ou outro servidor, uma senha apenas em
+  JavaScript público NÃO protegeria a gravação no Firestore.
+- Uma senha compartilhada dá permissão a QUALQUER pessoa que a conhecer.
+  Compartilhe apenas com mesários de confiança e troque quando necessário.
+- NÃO suba credenciais de Service Account nem senha para o repositório.
+- O arquivo firebase.js contém dados públicos de configuração e o e-mail
+  público do mesário; ambos são aceitáveis em um frontend web.
+- Esta versão permite uma partida ativa compartilhada por vez.
+- Fotos são comprimidas e armazenadas nos documentos Firestore.
+- No Firebase Spark os recursos possuem limites de uso; monitore o consumo.
+- O código passou por checagem sintática local e estrutural. Só a conexão
+  com seu projeto Firebase permitirá validar o fluxo online real.
+- Se quiser migrar dados da V3, importe pelo mesmo navegador/origem usando
+  a área de administrador; antes faça backup.
+
+AJUDA OFICIAL
+------------
+https://firebase.google.com/docs/auth/web/password-auth
+https://firebase.google.com/docs/firestore/security/insecure-rules
+https://firebase.google.com/docs/web/setup
+https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
